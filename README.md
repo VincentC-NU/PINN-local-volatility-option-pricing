@@ -22,3 +22,18 @@ The model is evaluated against a baseline multilayer perceptron (MLP).
 Results show that the PINN significantly improves PDE consistency while
 maintaining comparable pricing accuracy.
 
+## Black–Scholes PDE with Local Volatility
+
+The option price \(V(S,t)\) satisfies the Black–Scholes PDE:
+
+∂V/∂t + ½ σ(S,t)^2 S^2 ∂²V/∂S² + rS ∂V/∂S − rV = 0
+
+Terminal condition:
+
+V(S,T) = max(S − K, 0)
+
+Boundary conditions:
+
+V(0,t) = 0  
+V(S,t) → S − Ke^{-r(T−t)} as S → ∞
+
