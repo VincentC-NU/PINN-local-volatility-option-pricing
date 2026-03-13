@@ -22,19 +22,18 @@ The model is evaluated against a baseline multilayer perceptron (MLP).
 Results show that the PINN significantly improves PDE consistency while
 maintaining comparable pricing accuracy.
 
-## Black–Scholes PDE with Local Volatility
+## Black–Scholes PDE with Constant Volatility
+Under the classical Black–Scholes model, the volatility σ is assumed to be constant. The option price V(S,t) satisfies:
 
-The option price $V(S,t)$ satisfies the Black–Scholes PDE:
+$$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
 
-$$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
-
-### Terminal condition
+with terminal condition
 
 $$
 V(S,T)=\max(S-K,0)
 $$
 
-### Boundary conditions
+and boundary conditions
 
 $$
 V(0,t)=0
@@ -43,3 +42,24 @@ $$
 $$
 V(S,t)\to S-Ke^{-r(T-t)} \quad \text{as } S\to\infty
 $$
+
+In the constant-volatility case, the equation admits a closed-form
+analytical solution known as the Black–Scholes formula for European
+options.
+
+
+This analytical solution provides an important benchmark for
+numerical methods and machine learning models.
+
+However, empirical observations of financial markets show that
+volatility is not constant but varies with asset price and time,
+producing phenomena such as the volatility smile. This motivates
+the use of local volatility models where σ becomes a function σ(S,t).
+
+## Black–Scholes PDE with Local Volatility
+
+The option price $V(S,t)$ satisfies the Black–Scholes PDE:
+
+$$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
+
+
