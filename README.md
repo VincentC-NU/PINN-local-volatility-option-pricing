@@ -49,13 +49,13 @@ analytical solution for call and put options.
 Call option price:
 
 $$
-C(S_t, t)=S_0N(d_1)-Ke^{-rT}N(d_2)
+C(S_t, t)=S_0N(d_1)-Ke^{-r(T-t)}N(d_2)
 $$
 
 Put option price:
 
 $$
-P(S_t, t)=Ke^{-rT}N(-d_2)-S_0N(-d_1)
+P(S_t, t)=Ke^{-r(T-t)}N(-d_2)-S_0N(-d_1)
 $$
 
 This analytical solution provides an important benchmark for
