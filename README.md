@@ -26,12 +26,7 @@ maintaining comparable pricing accuracy.
 
 The option price $V(S,t)$ satisfies the Black–Scholes PDE:
 
-$$
-\frac{\partial V}{\partial t}
-+ \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2}
-+ rS \frac{\partial V}{\partial S}
-- rV = 0
-$$
+$$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
 
 ### Terminal condition
 
