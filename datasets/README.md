@@ -1,9 +1,9 @@
 # Datasets
 
-The training and testing datasets are not stored in this repository due to GitHub file size limits.
+# Datasets
 
-Datasets can be generated using the data generation script:
+Training and testing datasets are not stored in this repository due to GitHub file size limits.
 
-python scripts/generate_dataset.py
+Datasets can be generated using the scripts in [`src/data_generation`](../src/data_generation).
 
-The generated datasets will be saved in this directory.
+The generated datasets should be saved in this directory.
