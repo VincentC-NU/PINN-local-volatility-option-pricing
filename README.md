@@ -45,6 +45,7 @@ $$
 
 In the constant-volatility case, the equation admits a closed-form
 analytical solution for call and put options.
+
 Call option price:
 
 $$
