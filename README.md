@@ -36,16 +36,15 @@ $$
 ### Terminal condition
 
 $$
-V(S,T) = \max(S-K,0)
+V(S,T)=\max(S-K,0)
 $$
 
 ### Boundary conditions
 
 $$
-V(0,t) = 0
+V(0,t)=0
 $$
 
 $$
-V(S,t) \to S - K e^{-r(T-t)} \quad \text{as } S \to \infty
+V(S,t)\to S-Ke^{-r(T-t)} \quad \text{as } S\to\infty
 $$
-
