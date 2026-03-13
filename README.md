@@ -61,14 +61,9 @@ $$
 This analytical solution provides an important benchmark for
 numerical methods and machine learning models.
 
-However, empirical observations of financial markets show that
-volatility is not constant but varies with asset price and time,
-producing phenomena such as the volatility smile. This motivates
-the use of local volatility models where σ becomes a function σ(S,t).
-
 ## Black–Scholes PDE with Local Volatility
 
-The option price $V(S,t)$ satisfies the Black–Scholes PDE:
+However, empirical observations of financial markets show that volatility is not constant but varies with asset price and time, producing phenomena such as the volatility smile. This motivates the use of local volatility models where σ becomes a function σ(S,t). With local volatility, the Black–Scholes PDE becomes:
 
 $$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
 
