@@ -56,6 +56,7 @@ However, empirical observations of financial markets show that volatility is not
 
 $$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
 
+Unlike the constant-volatility case, the local-volatility Black–Scholes equation generally does not admit a closed-form analytical solution. As a result, numerical methods or machine learning approaches must be used to approximate the option price surface.
 
 
 
