@@ -1,8 +1,8 @@
 # Physics-Informed Neural Network for Local Volatility Option Pricing
 
-This project develops a **Physics-Informed Neural Network (PINN)** to approximate solutions of the **Black–Scholes partial differential equation with local volatility** for European option pricing.
+This project develops a Physics-Informed Neural Network (PINN) to approximate solutions of the Black–Scholes partial differential equation with local volatility for European option pricing.
 
-Training data are generated using a **Crank–Nicolson finite difference solver** under a parametric local volatility model. The PINN learns option price surfaces while enforcing the governing PDE, boundary conditions, and terminal payoff constraints through a composite loss function. Model performance is compared against a baseline neural network.
+Training data are generated using a Crank–Nicolson finite difference solver under a parametric local volatility model. The PINN learns option price surfaces while enforcing the governing PDE, boundary conditions, and terminal payoff constraints through a composite loss function. Model performance is compared against a baseline neural network.
 
 ## Overview
 
@@ -52,11 +52,17 @@ $$
 This analytical solution provides an important benchmark for numerical methods and machine learning models.
 
 ## Black–Scholes PDE with Local Volatility
-However, empirical observations of financial markets show that volatility is not constant but varies with both the underlying asset price and time. This produces well-known phenomena such as the **volatility smile** and motivates the use of **local volatility models**, where the volatility parameter becomes a function σ(S,t). As a result, the Black-Scholes PDE becomes:
+However, empirical observations of financial markets show that volatility is not constant but varies with both the underlying asset price and time. This produces well-known phenomena such as the volatility smile and motivates the use of local volatility models, where the volatility parameter becomes a function σ(S,t). As a result, the Black-Scholes PDE becomes:
 
 $$ \frac{\partial V}{\partial t} + \frac{1}{2}\sigma(S,t)^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0 $$
 
 Unlike the constant-volatility case, the local-volatility Black–Scholes equation generally does not admit a closed-form analytical solution. As a result, numerical methods or machine learning approaches must be used to approximate the option price surface.
+
+##Parametric Local Volatility Model
+In this project the local volatility function is parameterized asa
+
+$$
+σ(S,t;Φ) = σ₀ [1 + α tanh(β ln(S/K))] (1 + γ e^{-ηt})
 
 
 
