@@ -63,6 +63,7 @@ In this project the local volatility function is parameterized asa
 
 $$
 σ(S,t;Φ) = σ₀ [1 + α tanh(β ln(S/K))] (1 + γ e^{-ηt})
+$$
 
 
 
