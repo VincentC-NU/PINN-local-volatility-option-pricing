@@ -63,10 +63,7 @@ In this project the local volatility function is parameterized asa
 
 $$\sigma(S,t;\Phi)=\sigma_0\left[1+\alpha \tanh\\left(\beta \ln\frac{S}{K}\right)\right]\left(1+\gamma e^{-\eta t}\right)$$
 
-where 
-$$\Phi = (\sigma_0, \alpha, \beta, \gamma, \eta)$$
-
-controls the dependence of volatility on asset price and time.
+where $$\Phi = (\sigma_0, \alpha, \beta, \gamma, \eta)$$ controls the dependence of volatility on asset price and time.
 
 
 
