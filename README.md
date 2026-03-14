@@ -62,7 +62,11 @@ Unlike the constant-volatility case, the local-volatility Black–Scholes equati
 In this project the local volatility function is parameterized asa
 
 $$
-σ(S,t;Φ) = σ₀ [1 + α tanh(β ln(S/K))] (1 + γ e^{-ηt})
+\sigma(S,t;\Phi)
+=
+\sigma_0
+\left[1+\alpha \tanh\!\left(\beta \ln\frac{S}{K}\right)\right]
+\left(1+\gamma e^{-\eta t}\right),
 $$
 
 
