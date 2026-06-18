@@ -228,3 +228,60 @@ Model performance was monitored using a validation dataset generated from indepe
 | Model Selection | Lowest Validation Loss |
 
 The final model was selected based on validation performance and subsequently evaluated on an independently generated testing dataset to assess generalization across unseen volatility surfaces.
+
+## Hyperparameter Tuning
+
+Several hyperparameters were systematically tuned to balance pricing accuracy and PDE satisfaction. Model selection was based on validation performance, with particular attention paid to the tradeoff between supervised prediction error and enforcement of the Black–Scholes equation.
+
+### Learning Rate
+
+The learning rate was varied to evaluate optimization stability and convergence speed.
+
+| Learning Rate |
+|---------------|
+| 1e-3 |
+| 5e-4 |
+| 2e-4 |
+
+Among the tested values, a learning rate of **1e-3** achieved the best balance between convergence speed and validation performance and was selected for the final model.
+
+### Network Architecture
+
+The depth of the neural network was varied to investigate the effect of model capacity on approximation quality.
+
+| Hidden Layers | Hidden Units |
+|---------------|--------------|
+| 4 | 64 |
+| 6 | 64 |
+| 8 | 64 |
+
+Increasing network depth generally improved the model's ability to represent complex option price surfaces. The final architecture consisted of **8 hidden layers with 64 neurons per layer**.
+
+### PDE Loss Weight
+
+The PDE loss weight controls the relative importance of enforcing the governing equation during training.
+
+| PDE Weight (\(\lambda_{pde}\)) |
+|-------------------------------|
+| 0.3 |
+| 1 |
+| 3 |
+| 10 |
+
+Smaller values placed greater emphasis on fitting the numerical training data, while larger values prioritized satisfaction of the Black–Scholes equation.
+
+A PDE weight of **1** provided the most effective balance between prediction accuracy and physical consistency. Lower weights reduced supervised error but produced larger PDE residuals, whereas higher weights enforced the governing equation more strongly at the cost of pricing accuracy.
+
+### Final Hyperparameters
+
+| Parameter | Selected Value |
+|------------|---------------|
+| Hidden Layers | 8 |
+| Hidden Units | 64 |
+| Activation Function | tanh |
+| Learning Rate | 1e-3 |
+| PDE Weight (\(\lambda_{pde}\)) | 1 |
+| Optimizer | Adam |
+| Maximum Epochs | 500 |
+
+The final model configuration was chosen based on validation performance and was subsequently evaluated on an independently generated testing dataset.
