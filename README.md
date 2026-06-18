@@ -285,3 +285,70 @@ A PDE weight of **1** provided the most effective balance between prediction acc
 | Maximum Epochs | 500 |
 
 The final model configuration was chosen based on validation performance and was subsequently evaluated on an independently generated testing dataset.
+
+## Results
+
+### Comparison with Baseline MLP
+
+To evaluate the benefit of physics-informed learning, the proposed PINN was compared with a baseline multilayer perceptron (MLP) trained using supervised data only. Both models used the same neural network architecture; however, the PINN incorporated additional loss terms enforcing the Black–Scholes PDE together with boundary and terminal constraints.
+
+| Model | Interior RMSE | BC RMSE | Terminal RMSE | PDE RMS |
+|---------|---------|---------|---------|---------|
+| Baseline MLP | 0.0028 | 0.0034 | 0.0031 | 0.1235 |
+| PINN | 0.0030 | 0.0021 | 0.0020 | 0.0677 |
+
+The baseline MLP achieved slightly lower interior prediction error, reflecting its ability to interpolate the numerical training data. However, the PINN substantially improved physical consistency.
+
+In particular, the PDE residual RMS was reduced from **0.1235** to **0.0677**, corresponding to approximately a **45% improvement in PDE satisfaction** while maintaining comparable pricing accuracy.
+
+These results demonstrate that incorporating financial constraints directly into the training process can significantly improve adherence to the governing Black–Scholes dynamics.
+
+---
+
+### Training Behavior
+
+The training and validation losses decreased steadily throughout optimization, indicating stable convergence of the PINN.
+
+The PDE residual loss also decreased during training, showing that the network progressively learned solutions that better satisfied the Black–Scholes equation.
+
+Early stopping and validation-based checkpoint selection helped prevent overfitting while preserving the best-performing model.
+
+<p align="center">
+  <img src="figures/training_loss.png" width="700">
+</p>
+
+*Figure 1. Training and validation loss curves during PINN optimization.*
+
+---
+
+### PDE Residual Analysis
+
+To further evaluate physical consistency, the PDE residual was computed across the spatial–temporal domain after training.
+
+The residual magnitude
+
+$$
+\log_{10}(|R(S,t)|)
+$$
+
+was evaluated on the original (unnormalized) asset-price and time coordinates.
+
+<p align="center">
+  <img src="figures/pde_heatmap.png" width="500">
+</p>
+
+*Figure 2. Spatial distribution of the PDE residual magnitude.*
+
+The residual generally remained between approximately \(10^{-3}\) and \(10^{-1}\) throughout the domain. Larger residual values appeared in regions where the option price surface exhibited stronger curvature, while smaller residual regions indicated better satisfaction of the governing equation.
+
+Overall, the residual heatmap confirms that the PINN successfully captures the underlying structure of the local-volatility Black–Scholes PDE while maintaining consistency with the imposed financial constraints.
+
+---
+
+### Key Takeaways
+
+- PINNs successfully incorporate financial dynamics directly into the learning process.
+- PDE residual RMS was reduced by approximately **45%** relative to a supervised baseline.
+- Boundary and terminal condition errors were also improved.
+- Pricing accuracy remained comparable to a standard neural network despite the additional physics-based constraints.
+- The resulting model produced solutions that better satisfied the governing Black–Scholes equation across the entire domain.
