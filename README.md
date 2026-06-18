@@ -314,7 +314,7 @@ The PDE residual loss also decreased during training, showing that the network p
 Early stopping and validation-based checkpoint selection helped prevent overfitting while preserving the best-performing model.
 
 <p align="center">
-  <img src="figures/training_loss.png" width="700">
+  <img src="figures/PINN_loss_curves.png" width="700">
 </p>
 
 *Figure 1. Training and validation loss curves during PINN optimization.*
