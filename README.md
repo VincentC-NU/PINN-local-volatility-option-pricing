@@ -256,4 +256,3 @@ L
 $$
 
 The weighting coefficients control the tradeoff between fitting the numerical training data and enforcing the governing financial dynamics. During hyperparameter tuning, multiple values of the PDE weight were evaluated to balance prediction accuracy and PDE satisfaction.
-
