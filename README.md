@@ -79,3 +79,52 @@ To improve numerical stability during training, the input values are normalized:
 
 These normalization measures are applied consistently to the training, validation, and testing datasets.
 
+## PINN Architecture
+
+The Physics-Informed Neural Network is implemented as a fully connected multilayer perceptron that approximates the option pricing function
+
+$$
+V_\theta(S,t,\Phi)
+$$
+
+where \(S\) is the underlying asset price, \(t\) is time, and
+
+$$
+\Phi = (\sigma_0, \alpha, \beta, \gamma, \eta)
+$$
+
+is the parameter vector defining the local volatility surface.
+
+The network takes seven input features:
+
+$$
+(S,t,\sigma_0,\alpha,\beta,\gamma,\eta)
+$$
+
+and outputs the predicted European call option value:
+
+$$
+\hat{V}(S,t,\Phi)
+$$
+
+The architecture used in the final model is:
+
+- Input dimension: 7
+- Hidden layers: 8
+- Neurons per hidden layer: 64
+- Activation function: `tanh`
+- Output dimension: 1
+
+The `tanh` activation function was used because it provides smooth derivatives, which is important for computing the first- and second-order derivatives required in the Black–Scholes PDE residual.
+
+```text
+(S, t, σ₀, α, β, γ, η)
+          ↓
+Fully Connected Layer
+          ↓
+8 Hidden Layers, 64 Neurons Each, tanh Activation
+          ↓
+Fully Connected Output Layer
+          ↓
+Predicted Option Price Vθ(S,t,Φ)
+
