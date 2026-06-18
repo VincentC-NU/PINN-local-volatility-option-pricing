@@ -205,3 +205,26 @@ L=\lambda_{\text{int}}L_{\text{int}}+\lambda_{\text{bc}}L_{\text{bc}}+\lambda_{\
 $$
 
 The weighting coefficients control the tradeoff between fitting the numerical training data and enforcing the governing financial dynamics. During hyperparameter tuning, multiple values of the PDE weight were evaluated to balance prediction accuracy and PDE satisfaction.
+
+## Training Procedure
+
+The PINN was trained using the Adam optimizer with mini-batch gradient descent. During each training iteration, batches were sampled separately from the interior, boundary, and terminal datasets. The network parameters were updated by minimizing the composite loss function consisting of the interior data loss, boundary condition loss, terminal payoff loss, and PDE residual loss.
+
+Automatic differentiation in PyTorch was used to compute the first- and second-order derivatives required for evaluating the Black–Scholes PDE residual. These derivatives were incorporated directly into the training objective, allowing the model to learn solutions that satisfy both the numerical training data and the governing financial dynamics.
+
+Model performance was monitored using a validation dataset generated from independent local volatility surfaces. The model achieving the lowest validation loss was saved as the final checkpoint. Early stopping was applied to prevent overfitting and preserve the best-performing model.
+
+### Training Configuration
+
+| Parameter | Value |
+|------------|---------|
+| Optimizer | Adam |
+| Hidden Layers | 8 |
+| Hidden Units | 64 |
+| Activation Function | tanh |
+| Learning Rate | 1e-3 |
+| Maximum Epochs | 500 |
+| Early Stopping | Enabled |
+| Model Selection | Lowest Validation Loss |
+
+The final model was selected based on validation performance and subsequently evaluated on an independently generated testing dataset to assess generalization across unseen volatility surfaces.
