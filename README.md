@@ -334,7 +334,7 @@ $$
 was evaluated on the original (unnormalized) asset-price and time coordinates.
 
 <p align="center">
-  <img src="figures/pde_heatmap.png" width="500">
+  <img src="figures/PINN_PDE_residual_log.png" width="500">
 </p>
 
 *Figure 2. Spatial distribution of the PDE residual magnitude.*
