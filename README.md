@@ -144,7 +144,7 @@ $$
 L_{\text{int}}=\frac{1}{N_{\text{int}}}\sum_{i=1}^{N_{\text{int}}}\left(V_\theta(S_i,t_i,\Phi_i)-V_i^{\text{CN}}\right)^2
 $$
 
-where \(V_i^{\text{CN}}\) denotes the Crank–Nicolson solution.
+where \(V_i^{CN}\) denotes the option value computed using the Crank–Nicolson finite difference solver.
 
 ### Boundary Condition Loss
 
